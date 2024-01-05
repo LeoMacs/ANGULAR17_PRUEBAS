@@ -1,0 +1,80 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="titulo">TARJETA DE CRÉDITO</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="titulo">{{accion | uppercase}} TARJETA</h1>
+                    <form [formGroup]="form" (ngSubmit)="guardarTarjeta()">
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" [class.green-icon]="this.form.get('titulo')?.valid"
+                            [class.red-icon]="this.form.get('titulo')?.invalid && this.form.get('titulo')?.touched"><i class="fas fa-user"></i></span>
+                            <input formControlName="titulo" type="text" class="form-control" placeholder="Titular">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" [class.green-icon]="this.form.get('numeroTarjeta')?.valid"
+                            [class.red-icon]="this.form.get('numeroTarjeta')?.invalid && this.form.get('numeroTarjeta')?.touched"><i class="fas  fa-credit-card"></i></span>
+                            <input formControlName="numeroTarjeta" type="text" class="form-control" maxlength="16" placeholder="Número Tarjeta">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text" [class.green-icon]="this.form.get('fechaExpiracion')?.valid"
+                                    [class.red-icon]="this.form.get('fechaExpiracion')?.invalid && this.form.get('fechaExpiracion')?.touched"><i class="fas  fa-calendar-alt"></i></span>
+                                    <input formControlName="fechaExpiracion" type="text" class="form-control" maxlength="5" placeholder="MM/YY">
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text" [class.green-icon]="this.form.get('cvv')?.valid"
+                                    [class.red-icon]="this.form.get('cvv')?.invalid && this.form.get('cvv')?.touched"><i class="fas  fa-key"></i></span>
+                                    <input formControlName="cvv" type="password" class="form-control" maxlength="4" placeholder="CVV">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                                <i class="fas  fa-database"></i>
+                                &nbsp;Aceptar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="titulo">LISTADO DE TARJETA</h1>
+
+                    <table class="table table-dark">
+                        <tbody>
+                            <tr *ngFor="let tarjeta of listTarjetas">
+
+                                <td>{{tarjeta.titulo}}</td>
+                                <td>{{tarjeta.numeroTarjeta}}</td>
+                                <td>{{tarjeta.fechaExpiracion}}</td>
+                                <td><i (click)="editarTarjeta(tarjeta)" class="far fa-edit text-info"></i></td>
+                                <td><i (click)="eliminarTarjeta(tarjeta.id)" class="far fa-trash-alt text-danger"></i></td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
