@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 class="text-center"> LISTADO DE CANALES </h1>
+    <a href="" routerLink="/post/createCanal" class="btn btn-success">Create canal</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Activo</th>
+                <th width="250px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let canal of canales">
+                <td>{{canal.idCanal}}</td>
+                <td>{{canal.descripcion}}</td>
+                <td>{{canal.bactivo}}</td>
+                <td>
+                    <a href="" [routerLink]="['/post/',canal.idCanal,'viewCanal']" class="btn btn-info"> Ver Canal</a>
+                    <a href="" [routerLink]="['/post/',canal.idCanal,'editCanal']" class="btn btn-primary"> Editar Canal</a>
+                    <a href="" [routerLink]="['/post/',canal.idCanal,'viewCanal']" class="btn btn-danger"> Eliminar Canal</a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>
